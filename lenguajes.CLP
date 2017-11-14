@@ -1,11 +1,7 @@
-;1
 (deftemplate lenguajes
- (slot nombre
-  (type STRING)
- )
  (multislot plataforma
   (type SYMBOL)
-  (allowed-symbols Windows Linux Mac Solaris iOs GNU Unix Unix-Like Ubuntu)
+  (allowed-symbols Windows Linux Mac Solaris iOS GNU Unix Unix-Like Ubuntu)
  )
  (multislot paradigma
   (type STRING)
@@ -33,23 +29,7 @@
  )
  (slot calidad-interfaz
   (type SYMBOL)
-  (allowed-symbols media baja alta Ninguna)
+  (allowed-symbols media baja alta ninguna)
   (default Ninguna)
  )
 )
-
-(defrule r1
-  (lenguajes 
-	(nombre ?) 
-	(plataforma Windows|Linux|Mac|Solaris) 
-	(paradigma "Orientado a Objetos") 
-	(area-aplicacion apps|web|escritorio) 
-	(cap-aprendizaje media) 
-	(cat-API B) 
-	(uso-BD MySQL|Oracle|PostgreSQL|Access&MongoDB) 
-	(calidad-interfaz alta)
-  )
-=>
-  (printout t "Java" crlf)
-)
-
