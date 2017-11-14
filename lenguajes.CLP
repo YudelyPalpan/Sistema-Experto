@@ -53,3 +53,45 @@
   (printout t "Java" crlf)
 )
 
+(defrule r8
+  (lenguajes 
+	(nombre ?) 
+	(plataforma Windows) 
+	(paradigma "Orientado a Objetos") 
+	(area-aplicacion web|escritorio) 
+	(cap-aprendizaje baja)
+	(cat-API A) 
+	(uso-BD MySQL Server|MongoDB) 
+	(calidad-interfaz alta)
+  )
+=>
+  (printout t "Visual Basic.Net" crlf)
+)
+
+(defrule r9
+  (lenguajes 
+	(nombre ?)
+	(paradigma "Imperativo"|"Estructurado") 
+	(area-aplicacion SSOO|optimizacion) 
+	(cap-aprendizaje alta)
+	(cat-API D)
+  )
+=>
+  (printout t "Assembly Language" crlf)
+)
+
+(defrule r10
+  (lenguajes 
+	(nombre ?)
+	(plataforma Linux|Unix|OSx|Windows)  ;falta agregar el OSx
+	(paradigma "Orientado a Objetos"|"Reflexivo") 
+	(area-aplicacion web) 
+	(cap-aprendizaje alta)
+	(cat-API A)
+	(uso-BD MySQL MySQL|PostgreSQL|MongoDB)
+	(calidad-interfaz alta)
+  )
+=>
+  (printout t "Assembly Language" crlf)
+)
+
