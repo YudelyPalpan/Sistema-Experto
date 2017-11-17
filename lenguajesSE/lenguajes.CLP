@@ -229,9 +229,6 @@
     (curva-aprendizaje baja)
    )
 )
-me escuchas o no? feo estoy hablando .-. responde 
-si mi amor :3e escuchas o no? ???????????????????????? responde 
-si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.- 
 
 ***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
 
@@ -253,7 +250,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
  (curva-aprendizaje alta) 
  (cat-API D)
  (lenguajes
-        (paradigma "No Estructurado") 
+        (paradigma "Declarativo") 
         (area-aplicacion SSOO) 
   )
 =>
