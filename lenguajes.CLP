@@ -9,11 +9,11 @@
         "Orientado a Objetos"
         "Estructurado" 
         "Funcional" 
+        "Declarativo"
         "Reflexivo" 
         "Dirigido por eventos" 
         "Basada en Prototipos"
         "Procedural" 
-        "Declarativo"
    )
   )
  (slot area-aplicacion
@@ -54,7 +54,11 @@
  )
 )
 
-*************REGLAS PARA CAPACIDAD DE EQUIPO***************
+(deftemplate respuesta
+ (slot nombre)
+)
+
+;*************REGLAS PARA CAPACIDAD DE EQUIPO***************
 
 (defrule Regla1-CapEquipo
  (cap-equipo (cantMiembros A) (exp experto))
@@ -229,11 +233,8 @@
     (curva-aprendizaje baja)
    )
 )
-me escuchas o no? feo estoy hablando .-. responde 
-si mi amor :3e escuchas o no? ???????????????????????? responde 
-si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.- 
 
-***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
+;***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
 
 (defrule Regla1-Lenguaje
   (curva-aprendizaje media) 
@@ -253,11 +254,11 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
  (curva-aprendizaje alta) 
  (cat-API D)
  (lenguajes
-        (paradigma "No Estructurado") 
+        (paradigma "Declarativo") 
         (area-aplicacion SSOO) 
   )
 =>
-  (assert (nombre "Assembly Language"))
+  (assert (respuesta (nombre "Assembly Language")))
 )
 
 
@@ -272,7 +273,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz baja)
   )
 =>
-  (assert (nombre "C"))
+  (assert (respuesta (nombre "C")))
 )
 
 (defrule Regla4-Lenguaje
@@ -286,7 +287,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "C#"))
+  (assert (respuesta (nombre "C#")))
 )
 
 
@@ -301,7 +302,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz media)
    )
 =>
-  (assert (nombre "C++"))
+  (assert (respuesta (nombre "C++")))
 )
 
 (defrule Regla6-Lenguaje
@@ -315,7 +316,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "JavaScript"))
+  (assert (respuesta (nombre "JavaScript")))
 )
 
 (defrule Regla7-Lenguaje
@@ -329,7 +330,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "Lips"))
+  (assert (respuesta (nombre "Lips")))
 )
 
 (defrule  Regla8-Lenguaje
@@ -343,7 +344,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Perl"))
+  (assert (respuesta (nombre "Perl")))
 )
 
 
@@ -358,7 +359,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "PHP"))
+  (assert (respuesta (nombre "PHP")))
 )
 
 
@@ -373,7 +374,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz media)
   )
 =>
-  (assert (nombre "Prolog"))
+  (assert (respuesta (nombre "Prolog")))
 )
 
 
@@ -388,7 +389,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Python"))
+  (assert (respuesta (nombre "Python")))
 )
 
 (defrule  Regla12-Lenguaje
@@ -402,7 +403,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Ruby"))
+  (assert (respuesta (nombre "Ruby")))
 )
 
 
@@ -418,7 +419,7 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Scala"))
+  (assert (respuesta (nombre "Scala")))
 )
 
 
@@ -434,12 +435,12 @@ si te escucho amor rs#onem hablando feooooooooooooooooo D: feo -.-
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Visual Basic.Net"))
+  (assert (respuesta (nombre "Visual Basic.Net")))
 )
 
 
 (deffacts prueba1
- (cap-equipo (cantMiembros A) (exp experto))
- (lenguajes (plataforma Windows) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD MongoDB) (calidad-interfaz alta))
+ (cap-equipo (cantMiembros B) (exp alta))
+ (lenguajes (plataforma Linux) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD Oracle) (calidad-interfaz alta))
 )
 

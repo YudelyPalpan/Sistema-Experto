@@ -37,12 +37,12 @@ public class Procesamiento {
 		
 		CLIPSENV.run();
 		
-		MultifieldValue value = (MultifieldValue) CLIPSENV.eval("(find-all-facts ((?n nombre)) TRUE)");
+		MultifieldValue value = (MultifieldValue) CLIPSENV.eval("(find-all-facts ((?r respuesta)) TRUE)");
 		
 		try {
 			
 			for (int i = 0; i < value.size(); i++) {
-				lenguajes.add(((FactAddressValue)value.get(i)).toString());
+				lenguajes.add(((FactAddressValue) value.get(i)).getFactSlot("nombre").toString());
 			}
 			
 		} catch (Exception e) {

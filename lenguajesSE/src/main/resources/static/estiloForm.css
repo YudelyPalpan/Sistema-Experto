@@ -22,7 +22,7 @@ body {
   position: relative;
 }
 
-#msform fieldset {
+#msform .fs {
   background: white;
   border: 0 none;
   border-radius: 3px;

@@ -10,10 +10,16 @@
   <script type="text/javascript" th:src="@{/funciones.js}"></script>
 </head>
 <body>
-	<ul>
+
+	<div class="fs">
+		<ul>
 		<li th:each="lenguaje : ${lenguajes}">
 			<span th:text="${lenguaje}"></span>
 		</li>
 	</ul>
+	
+	 <a th:href="@{/se}" class="next action-button"> Vuelve a intentarlo</a>
+	</div>
+	
 </body>
 </html>

@@ -9,11 +9,11 @@
         "Orientado a Objetos"
         "Estructurado" 
         "Funcional" 
+        "Declarativo"
         "Reflexivo" 
         "Dirigido por eventos" 
         "Basada en Prototipos"
         "Procedural" 
-        "Declarativo"
    )
   )
  (slot area-aplicacion
@@ -54,7 +54,11 @@
  )
 )
 
-*************REGLAS PARA CAPACIDAD DE EQUIPO***************
+(deftemplate respuesta
+ (slot nombre)
+)
+
+;*************REGLAS PARA CAPACIDAD DE EQUIPO***************
 
 (defrule Regla1-CapEquipo
  (cap-equipo (cantMiembros A) (exp experto))
@@ -230,7 +234,7 @@
    )
 )
 
-***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
+;***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
 
 (defrule Regla1-Lenguaje
   (curva-aprendizaje media) 
@@ -243,7 +247,7 @@
    (calidad-interfaz alta)
   )
 =>
- (assert (nombre "Java"))
+ (assert (respuesta (nombre "Java")))
 )
 
 (defrule Regla2-Lenguaje
@@ -254,7 +258,7 @@
         (area-aplicacion SSOO) 
   )
 =>
-  (assert (nombre "Assembly Language"))
+  (assert (respuesta (nombre "Assembly Language")))
 )
 
 
@@ -265,11 +269,11 @@
         (plataforma Windows|Linux) 
         (paradigma "Estructurado") 
         (area-aplicacion SSOO|escritorio) 
-        (uso-BD MySQL|PostgreSQL|MongoDB) 
+        (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno) 
         (calidad-interfaz baja)
   )
 =>
-  (assert (nombre "C"))
+  (assert (respuesta (nombre "C")))
 )
 
 (defrule Regla4-Lenguaje
@@ -279,11 +283,11 @@
         (plataforma Windows|Linux|Android|Unix|iOS|Mac) 
         (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional"|"Reflexivo"|"Dirigido por eventos") 
         (area-aplicacion moviles|escritorio|web) 
-        (uso-BD MySQL|SQLServer|MongoDB|Oracle) 
+        (uso-BD MySQL|SQLServer|MongoDB|Oracle|Ninguno) 
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "C#"))
+  (assert (respuesta (nombre "C#")))
 )
 
 
@@ -294,11 +298,11 @@
         (plataforma Windows|Linux) 
         (paradigma "Estructurado"|"Orientado a Objetos") 
         (area-aplicacion juegos|escritorio) 
-        (uso-BD MySQL|PostgreSQL|MongoDB) 
+        (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno) 
         (calidad-interfaz media)
    )
 =>
-  (assert (nombre "C++"))
+  (assert (respuesta (nombre "C++")))
 )
 
 (defrule Regla6-Lenguaje
@@ -308,11 +312,11 @@
         (plataforma Windows|Linux|Mac|Unix) 
         (paradigma "Basada en Prototipos"|"Funcional") 
         (area-aplicacion web) 
-        (uso-BD MySQL|MongoDB) 
+        (uso-BD MySQL|MongoDB|Ninguno) 
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "JavaScript"))
+  (assert (respuesta (nombre "JavaScript")))
 )
 
 (defrule Regla7-Lenguaje
@@ -322,11 +326,11 @@
         (plataforma Ubuntu|Windows) 
         (paradigma "Orientado a Objetos"|"Funcional"|"Declarativo") 
         (area-aplicacion IA|juegos) 
-        (uso-BD MongoDB) 
+        (uso-BD MongoDB|Ninguno) 
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "Lips"))
+  (assert (respuesta (nombre "Lips")))
 )
 
 (defrule  Regla8-Lenguaje
@@ -340,7 +344,7 @@
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Perl"))
+  (assert (respuesta (nombre "Perl")))
 )
 
 
@@ -355,7 +359,7 @@
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (nombre "PHP"))
+  (assert (respuesta (nombre "PHP")))
 )
 
 
@@ -370,7 +374,7 @@
         (calidad-interfaz media)
   )
 =>
-  (assert (nombre "Prolog"))
+  (assert (respuesta (nombre "Prolog")))
 )
 
 
@@ -385,7 +389,7 @@
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Python"))
+  (assert (respuesta (nombre "Python")))
 )
 
 (defrule  Regla12-Lenguaje
@@ -399,7 +403,7 @@
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Ruby"))
+  (assert (respuesta (nombre "Ruby")))
 )
 
 
@@ -415,7 +419,7 @@
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Scala"))
+  (assert (respuesta (nombre "Scala")))
 )
 
 
@@ -431,12 +435,12 @@
         (calidad-interfaz alta)
   )
 =>
-  (assert (nombre "Visual Basic.Net"))
+  (assert (respuesta (nombre "Visual Basic.Net")))
 )
 
 
-(deffacts prueba1
- (cap-equipo (cantMiembros A) (exp experto))
- (lenguajes (plataforma Windows) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD MongoDB) (calidad-interfaz alta))
-)
+;(deffacts prueba1
+; (cap-equipo (cantMiembros A) (exp experto))
+; (lenguajes (plataforma Windows) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD MongoDB) (calidad-interfaz alta))
+;)
 
