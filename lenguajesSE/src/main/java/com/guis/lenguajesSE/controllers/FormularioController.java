@@ -30,21 +30,22 @@ public class FormularioController {
 	
 	@GetMapping("")
 	public String showFormulario(Model model) {
+		
 		model.addAttribute("cuestionario", new Cuestionario());
+		
 		return ViewConstants.FORMULARIO;
 	}
 	
 	@PostMapping("/evaluacion")
-	public String showEvaluacion(
-			Model model,
-			@ModelAttribute(name="cuestionario") Cuestionario cuestionario
-			) {
-			LOG.info("El cuestionario es: " + cuestionario);
+	public String showEvaluacion(Model model,
+			@ModelAttribute(name="cuestionario") Cuestionario cuestionario) {
+		
+		LOG.info("El cuestionario es: " + cuestionario);
+		
+		List<String> lenguajes = procesamiento.getRespuestas(cuestionario);
+		
+		model.addAttribute("lenguajes", lenguajes );
 			
-			List<String> lenguajes = procesamiento.getRespuestas(cuestionario);
-			
-			model.addAttribute("lenguajes", lenguajes );
-			
-		return "respuesta";
+		return ViewConstants.RESPUESTA;
 	}
 }

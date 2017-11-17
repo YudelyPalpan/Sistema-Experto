@@ -42,7 +42,8 @@ public class Procesamiento {
 		try {
 			
 			for (int i = 0; i < value.size(); i++) {
-				lenguajes.add(((FactAddressValue) value.get(i)).getFactSlot("nombre").toString());
+				String lenguaje = ((FactAddressValue) value.get(i)).getFactSlot("nombre").toString();
+				lenguajes.add(lenguaje.replaceAll("\"", ""));
 			}
 			
 		} catch (Exception e) {

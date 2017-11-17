@@ -33,6 +33,19 @@ body {
   margin: 0 10%;
   position: relative;
 }
+
+
+.container {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  position: relative;
+}
 #msform input{
   font-family: montserrat;
   font-size: 1em;
@@ -67,6 +80,23 @@ body {
   font-size: 1em;
 }
 #msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+.action-button2 {
+  width: 100px;
+  background: #27AE60;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.action-button2:hover, .action-button2:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/

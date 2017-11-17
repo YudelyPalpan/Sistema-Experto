@@ -10,16 +10,25 @@
   <script type="text/javascript" th:src="@{/funciones.js}"></script>
 </head>
 <body>
-
-	<div class="fs">
-		<ul>
-		<li th:each="lenguaje : ${lenguajes}">
-			<span th:text="${lenguaje}"></span>
-		</li>
-	</ul>
-	
-	 <a th:href="@{/se}" class="next action-button"> Vuelve a intentarlo</a>
+	<div id="msform">
+		<h1 class="fs-title">Estos son los lenguajes que te sugerimos:</h1>
+		<div class="fs">
+		
+			<div th:if="${#lists.isEmpty(lenguajes)}">
+				<h2>No se puede recomendar ningún lenguaje de programación para su proyecto</h2>
+			</div>
+			
+			<ul style="list-style: none;">
+				<li th:each="lenguaje : ${lenguajes}">
+					<br></br>
+					<h2><span th:text="${lenguaje}"></span></h2>
+				</li>
+			</ul>
+			
+			<br></br>
+			
+		 	<a th:href="@{/se}" class="action-button2"> Volver</a>
+		</div>
 	</div>
-	
 </body>
 </html>

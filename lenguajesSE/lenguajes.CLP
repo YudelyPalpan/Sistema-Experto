@@ -340,7 +340,7 @@
         (plataforma Linux|Windows|OSx) 
         (paradigma "Funcional"|"Orientado a Objetos"|"Reflexivo"|"Procedural"|"Dirigido por eventos") 
         (area-aplicacion web) 
-        (uso-BD Oracle|MySQL|PostgreSQL|MongoDB)
+        (uso-BD Oracle|MySQL|PostgreSQL|MongoDB|Ninguno)
         (calidad-interfaz alta)
   )
 =>
@@ -355,7 +355,7 @@
         (plataforma Windows|Unix-Like) 
         (paradigma "Orientado a Objetos"|"Funcional"|"Procedural"|"Reflexivo") 
         (area-aplicacion web) 
-        (uso-BD MySQL|SQLServer|Oracle|PostgreSQL|Firebird) 
+        (uso-BD MySQL|SQLServer|Oracle|PostgreSQL|Firebird|Ninguno) 
         (calidad-interfaz ninguna)
   )
 =>
@@ -370,7 +370,7 @@
         (plataforma Linux|Windows|OSx)  ;falta agregar el OSx
         (paradigma "Declarativo") 
         (area-aplicacion IA) 
-        (uso-BD MySQL)
+        (uso-BD MySQL|Ninguno)
         (calidad-interfaz media)
   )
 =>
@@ -385,7 +385,7 @@
         (plataforma Windows|Linux|Mac) 
         (paradigma "Orientado a Objetos"|"Funcional") 
         (area-aplicacion escritorio|web) 
-        (uso-BD MySQL|MongoDB|Oracle|PostgreSQL) 
+        (uso-BD MySQL|MongoDB|Oracle|PostgreSQL|Ninguno) 
         (calidad-interfaz alta)
   )
 =>
@@ -399,7 +399,7 @@
         (plataforma Linux|Unix|OSx|Windows) 
         (paradigma "Orientado a Objetos"|"Reflexivo") 
         (area-aplicacion web) 
-        (uso-BD  MySQL|PostgreSQL|MongoDB)
+        (uso-BD  MySQL|PostgreSQL|MongoDB|Ninguno)
         (calidad-interfaz alta)
   )
 =>
@@ -415,7 +415,7 @@
         (plataforma Mac|Unix|Windows|OSx)  
         (paradigma "Funcional"|"Orientado a Objetos") 
         (area-aplicacion web) 
-        (uso-BD MySQL MongoDB)
+        (uso-BD MySQL|MongoDB|Ninguno)
         (calidad-interfaz alta)
   )
 =>
@@ -431,7 +431,7 @@
         (plataforma Windows) 
         (paradigma "Orientado a Objetos") 
         (area-aplicacion web|escritorio) 
-        (uso-BD MySQL|MongoDB) 
+        (uso-BD MySQL|MongoDB|Ninguno) 
         (calidad-interfaz alta)
   )
 =>
