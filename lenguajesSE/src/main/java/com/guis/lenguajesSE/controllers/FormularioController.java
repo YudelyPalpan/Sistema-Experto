@@ -21,7 +21,6 @@ import com.guis.lenguajesSE.services.Procesamiento;
 @RequestMapping("/se")
 public class FormularioController {
 	
-	
 	private static final Log LOG = LogFactory.getLog(FormularioController.class);
 	
 	@Autowired
@@ -30,6 +29,8 @@ public class FormularioController {
 	
 	@GetMapping("")
 	public String showFormulario(Model model) {
+		
+		LOG.info("Mostrando el formulario de respuestas");
 		
 		model.addAttribute("cuestionario", new Cuestionario());
 		
@@ -43,6 +44,8 @@ public class FormularioController {
 		LOG.info("El cuestionario es: " + cuestionario);
 		
 		List<String> lenguajes = procesamiento.getRespuestas(cuestionario);
+		
+		LOG.info("La lista de lenguajes es = " + lenguajes);
 		
 		model.addAttribute("lenguajes", lenguajes );
 			
