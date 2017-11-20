@@ -8,119 +8,133 @@
   <script type="text/javascript" th:src="@{/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/jquery.easing.min.js}"></script>
   <script type="text/javascript" th:src="@{/funciones.js}"></script>
+
+  <script type="text/javascript">
+	$(document).ready(function() {
+		$(".btnMoviles").click(function(){
+			$(".radioSOEsc").hide();
+			$(".radioSOMov").show();
+		});
+		
+		$(".btnNotMovi").click(function(){
+			$(".radioSOEsc").show();
+			$(".radioSOMov").hide();
+		});
+	});
+  </script>
+
 </head>
 <body>
   <!-- formulario multiple -->
 <form id="msform" th:action="@{/se/evaluacion}" th:object="${cuestionario}" method="POST">
   <!-- barra de progreso -->
   <ul id="progressbar">
-    <li class="active">Tipo de Sistema</li>
-    <li>Plataforma</li>
-    <li>Paradigma</li>
-    <li>Base de Datos</li>
-    <li>Interfaz Grafica</li>
-    <li>Equipo</li>
-    <li>Experiencia</li>
+	<li class="active">Tipo de Sistema</li>
+	<li>Plataforma</li>
+	<li>Paradigma</li>
+	<li>Base de Datos</li>
+	<li>Interfaz Grafica</li>
+	<li>Equipo</li>
+	<li>Experiencia</li>
   </ul>
 
   <!-- fieldsets -->
   <fieldset class="fs">
-    <h2 class="fs-title">¿Qué tipo de sistema va a implementar?</h2>
+	<h2 class="fs-title">¿Qué tipo de sistema va a implementar?</h2>
 
-    <div class="radio">
-	    <input type="radio" name="tipo_sistema" th:field="*{tipoSistema}" required value="escritorio"/> Escritorio <br></br>
-	    <input type="radio" name="tipo_sistema" th:field="*{tipoSistema}" required value="juegos"/> Juegos <br></br>
-	    <input type="radio" name="tipo_sistema" th:field="*{tipoSistema}" required value="web"/> Web <br></br>
-	    <input type="radio" name="tipo_sistema" th:field="*{tipoSistema}" required value="IA"/> IA <br></br>
-	    <input type="radio" name="tipo_sistema" th:field="*{tipoSistema}" required value="moviles"/> Moviles<br></br>
- 	</div>
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
+	<div class="radio">
+		<input type="radio" class="btnNotMovi" name="tipo_sistema" th:field="*{tipoSistema}" required value="escritorio"/> Escritorio <br></br>
+		<input type="radio" class="btnNotMovi" name="tipo_sistema" th:field="*{tipoSistema}" required value="juegos"/> Juegos <br></br>
+		<input type="radio" class="btnNotMovi" name="tipo_sistema" th:field="*{tipoSistema}" required value="web"/> Web <br></br>
+		<input type="radio" class="btnNotMovi" name="tipo_sistema" th:field="*{tipoSistema}" required value="IA"/> IA <br></br>
+		<input type="radio" class="btnMoviles" name="tipo_sistema" th:field="*{tipoSistema}" required value="moviles" /> Moviles<br></br>
+	</div>
+	<input type="button"  name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
 <fieldset class="fs">
-    <h2 class="fs-title">¿En que plataforma quieres desarrollar tu aplicación?</h2>
+	<h2 class="fs-title">¿En que plataforma quieres desarrollar tu aplicación?</h2>
 
-    <div class="radio">
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="Windows"/> Windows <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="Linux"/> Linux <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="OSx"/> OSx <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="Solaris"/> Solaris <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="iOS"/> iOS <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="Android"/> Android <br></br>
-	    <input type="radio" name="plataforma" th:field="*{plataforma}" required value="Unix"/> Unix <br></br>
-
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
+	<div class="radio">
+		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Windows"/> Windows <br></br></div>
+		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Linux"/> Linux <br></br></div>
+		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="OSx"/> OSx <br></br></div>
+		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Solaris"/> Solaris <br></br></div>
+		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Unix"/> Unix <br></br></div>
+		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="iOS"/> iOS <br></br></div>
+		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Android"/> Android <br></br></div>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
  <fieldset class="fs">
-    <h2 class="fs-title">¿Que paradigma va usar?</h2>
+	<h2 class="fs-title">¿Que paradigma va usar?</h2>
 
-    <div class="radio-lg">
-      <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Orientado a Objetos"/> Orientado a Objetos <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Estructurado"/> Estructurado <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Funcional"/> Funcional <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Reflexivo"/> Reflexivo<br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Dirigido por eventos"/> Dirigido por eventos <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Basada en Prototipos"/> Basada en Prototipos <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Procedural"/> Procedural <br></br>
-	    <input type="radio" name="paradigma" th:field="*{paradigma}" required value="Declarativo"/> Declarativo <br></br>
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
+	<div class="radio-lg">
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Orientado a Objetos"/> Orientado a Objetos <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Estructurado"/> Estructurado <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Funcional"/> Funcional <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Reflexivo"/> Reflexivo<br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Dirigido por eventos"/> Dirigido por eventos <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Basada en Prototipos"/> Basada en Prototipos <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Procedural"/> Procedural <br></br>
+		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Declarativo"/> Declarativo <br></br>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
   <fieldset class="fs">
-    <h2 class="fs-title">¿Que Base de Datos usará?</h2>
+	<h2 class="fs-title">¿Que Base de Datos usará?</h2>
 
-    <div class="radio">
-      <input type="radio" name="bd" th:field="*{bd}" required value="Oracle"/> Oracle <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="SQLServer"/> SQL Server <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="MySQL"/> MySQL <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="MongoDB"/> MongoDB <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="Firebird"/> Firebird <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="PostgreSQL"/> PostgreSQL  <br></br>
-	    <input type="radio" name="bd" th:field="*{bd}" required value="Ninguno"/> Ninguno <br></br>
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
-  </fieldset>
-
-  <fieldset class="fs">
-    <h2 class="fs-title">Nivel de Interfaz Gráfica</h2>
-
-    <div class="radio">
-      <input type="radio" name="interfaz" th:field="*{interfaz}" required value="alta"/> Alta <br></br>
-	    <input type="radio" name="interfaz" th:field="*{interfaz}" required value="media"/> Media <br></br>
-	    <input type="radio" name="interfaz" th:field="*{interfaz}" required value="baja"/> Baja <br></br>
-	    <input type="radio" name="interfaz" th:field="*{interfaz}" required value="ninguna"/> Ninguno <br></br>
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
+	<div class="radio">
+	  <input type="radio" name="bd" th:field="*{bd}" required value="Oracle"/> Oracle <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="SQLServer"/> SQL Server <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="MySQL"/> MySQL <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="MongoDB"/> MongoDB <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="Firebird"/> Firebird <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="PostgreSQL"/> PostgreSQL  <br></br>
+		<input type="radio" name="bd" th:field="*{bd}" required value="Ninguno"/> Ninguno <br></br>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="fs">
-    <h2 class="fs-title">Cantidad de Desarrolladores</h2>
-    <div class="radio">
-      <input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="A"/> Entre 11-20 <br></br>
-	    <input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="B"/> Entre 6-10 <br></br>
-	    <input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="C"/> Entre 2-5 <br></br>
-	    <input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="D"/> Solo 1 <br></br>
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="button" name="next" class="next action-button" value="Siguiente" />
+	<h2 class="fs-title">Nivel de Interfaz Gráfica</h2>
+
+	<div class="radio">
+	  <input type="radio" name="interfaz" th:field="*{interfaz}" required value="alta"/> Alta <br></br>
+		<input type="radio" name="interfaz" th:field="*{interfaz}" required value="media"/> Media <br></br>
+		<input type="radio" name="interfaz" th:field="*{interfaz}" required value="baja"/> Baja <br></br>
+		<input type="radio" name="interfaz" th:field="*{interfaz}" required value="ninguna"/> Ninguno <br></br>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="fs">
-    <h2 class="fs-title">¿Cuál es la experiencia de su equipo de Desarrollo?</h2>
-    <div class="radio">
-	    <input type="radio" name="exp" th:field="*{exp}" required value="experto"/> Expertos <br></br>
-	    <input type="radio" name="exp" th:field="*{exp}" required value="alta"/> Alta <br></br>
-	    <input type="radio" name="exp" th:field="*{exp}" required value="regular"/> Regular <br></br>
-	    <input type="radio" name="exp" th:field="*{exp}" required value="poca"/> Poca <br></br>
-  	</div>
-    <input type="button" name="previous" class="previous action-button" value="Anterior" />
-    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+	<h2 class="fs-title">Cantidad de Desarrolladores</h2>
+	<div class="radio">
+	  <input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="A"/> Entre 11-20 <br></br>
+		<input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="B"/> Entre 6-10 <br></br>
+		<input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="C"/> Entre 2-5 <br></br>
+		<input type="radio" name="desarrolladores" th:field="*{desarrolladores}" required value="D"/> Solo 1 <br></br>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="button" name="next" class="next action-button" value="Siguiente" />
+  </fieldset>
+
+  <fieldset class="fs">
+	<h2 class="fs-title">¿Cuál es la experiencia de su equipo de Desarrollo?</h2>
+	<div class="radio">
+		<input type="radio" name="exp" th:field="*{exp}" required value="experto"/> Expertos <br></br>
+		<input type="radio" name="exp" th:field="*{exp}" required value="alta"/> Alta <br></br>
+		<input type="radio" name="exp" th:field="*{exp}" required value="regular"/> Regular <br></br>
+		<input type="radio" name="exp" th:field="*{exp}" required value="poca"/> Poca <br></br>
+	</div>
+	<input type="button" name="previous" class="previous action-button" value="Anterior" />
+	<input type="submit" name="submit" class="submit action-button" value="Submit" />
   </fieldset>
 </form>
 </body>
