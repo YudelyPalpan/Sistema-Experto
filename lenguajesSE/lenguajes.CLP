@@ -1,7 +1,7 @@
 (deftemplate lenguajes
  (multislot plataforma
   (type SYMBOL)
-  (allowed-symbols Windows Linux Android Solaris iOS Unix Unix-Like Ubuntu OSx)
+  (allowed-symbols Windows Linux Android Solaris iOS Unix Unix-Like OSx)
    )
  (multislot paradigma
   (type STRING)
@@ -341,7 +341,7 @@
   (curva-aprendizaje baja) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows|Unix-Like) 
+        (plataforma Windows|Linux|Unix-Like) 
         (paradigma "Orientado a Objetos"|"Funcional"|"Procedural"|"Reflexivo") 
         (area-aplicacion web) 
         (uso-BD MySQL|SQLServer|Oracle|PostgreSQL|Firebird|Ninguno) 
@@ -356,7 +356,7 @@
   (curva-aprendizaje baja) 
   (cat-API B)
   (lenguajes 
-        (plataforma Linux|Windows|OSx)  ;falta agregar el OSx
+        (plataforma Linux|Windows|OSx)
         (paradigma "Declarativo") 
         (area-aplicacion IA) 
         (uso-BD MySQL|Ninguno)
