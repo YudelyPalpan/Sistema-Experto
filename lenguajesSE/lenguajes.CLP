@@ -428,7 +428,7 @@
   (curva-aprendizaje baja) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows) 
+        (plataforma Windows) b
         (paradigma "Orientado a Objetos") 
         (area-aplicacion web|escritorio) 
         (uso-BD MySQL|MongoDB|Ninguno) 
