@@ -1,7 +1,7 @@
 (deftemplate lenguajes
  (multislot plataforma
   (type SYMBOL)
-  (allowed-symbols Windows Linux Android Solaris iOS Unix Unix-Like OSx)
+  (allowed-symbols Windows Linux Android Solaris iOS Unix Unix-Like macOS)
    )
  (multislot paradigma
   (type STRING)
@@ -240,9 +240,9 @@
   (curva-aprendizaje media) 
   (cat-API B)
   (lenguajes 
-   (plataforma Windows|Linux|OSx|Solaris) 
+   (plataforma Android|Windows|Linux|macOS|Solaris) 
    (paradigma "Orientado a Objetos") 
-   (area-aplicacion web|escritorio) 
+   (area-aplicacion moviles|web|escritorio) 
    (uso-BD MySQL|Oracle|PostgreSQL|MongoDB|Ninguno) 
    (calidad-interfaz ?)
   )
@@ -269,7 +269,7 @@
   (curva-aprendizaje alta) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows|Linux|Android|Unix|iOS|OSx) 
+        (plataforma Windows|Linux|Android|Unix|iOS|macOS) 
         (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional"|"Reflexivo"|"Dirigido por eventos") 
         (area-aplicacion moviles|escritorio|web) 
         (uso-BD MySQL|SQLServer|MongoDB|Oracle|Ninguno) 
@@ -298,7 +298,7 @@
   (curva-aprendizaje alta) 
   (cat-API B)
   (lenguajes 
-        (plataforma Windows|Linux|OSx|Unix) 
+        (plataforma Windows|Linux|macOS|Unix) 
         (paradigma "Basada en Prototipos"|"Funcional") 
         (area-aplicacion web) 
         (uso-BD MySQL|MongoDB|Ninguno) 
@@ -326,7 +326,7 @@
   (curva-aprendizaje baja) 
   (cat-API C)
   (lenguajes 
-        (plataforma Linux|Windows|OSx) 
+        (plataforma Linux|Windows|macOS) 
         (paradigma "Funcional"|"Orientado a Objetos"|"Reflexivo"|"Procedural"|"Dirigido por eventos") 
         (area-aplicacion web) 
         (uso-BD Oracle|MySQL|PostgreSQL|MongoDB|Ninguno)
@@ -356,7 +356,7 @@
   (curva-aprendizaje baja) 
   (cat-API B)
   (lenguajes 
-        (plataforma Linux|Windows|OSx)
+        (plataforma Linux|Windows|macOS)
         (paradigma "Declarativo") 
         (area-aplicacion IA) 
         (uso-BD MySQL|Ninguno)
@@ -371,7 +371,7 @@
   (curva-aprendizaje baja) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows|Linux|OSx) 
+        (plataforma Windows|Linux|macOS) 
         (paradigma "Orientado a Objetos"|"Funcional") 
         (area-aplicacion escritorio|web) 
         (uso-BD MySQL|MongoDB|Oracle|PostgreSQL|Ninguno) 
@@ -385,7 +385,7 @@
   (curva-aprendizaje alta) 
   (cat-API A)
   (lenguajes 
-        (plataforma Linux|Unix|OSx|Windows) 
+        (plataforma Linux|Unix|macOS|Windows) 
         (paradigma "Orientado a Objetos"|"Reflexivo") 
         (area-aplicacion web) 
         (uso-BD  MySQL|PostgreSQL|MongoDB|Ninguno)
@@ -401,7 +401,7 @@
   (curva-aprendizaje alta) 
   (cat-API A)
   (lenguajes 
-        (plataforma Unix|Windows|OSx)  
+        (plataforma Unix|Windows|macOS)  
         (paradigma "Funcional"|"Orientado a Objetos") 
         (area-aplicacion web) 
         (uso-BD MySQL|MongoDB|Ninguno)
@@ -427,7 +427,19 @@
   (assert (respuesta (nombre "Visual Basic.Net")))
 )
 
-
+(defrule  Regla14-Lenguaje
+  (curva-aprendizaje baja) 
+  (cat-API A)
+  (lenguajes 
+        (plataforma iOS|macOS|Linux)
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion moviles) 
+        (uso-BD MySQL|MongoDB|Ninguno) 
+        (calidad-interfaz ?)
+  )
+=>
+  (assert (respuesta (nombre "Swift")))
+)
 ;(deffacts prueba1
 ; (cap-equipo (cantMiembros A) (exp experto))
 ; (lenguajes (plataforma Windows) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD MongoDB) (calidad-interfaz alta))
