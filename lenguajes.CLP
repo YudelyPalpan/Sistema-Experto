@@ -1,7 +1,8 @@
+; Template que representa al lenguaje
 (deftemplate lenguajes
  (multislot plataforma
   (type SYMBOL)
-  (allowed-symbols Windows Linux Android Mac Solaris iOS Unix Unix-Like Ubuntu OSx)
+  (allowed-symbols Windows Linux Android iOS macOS)
    )
  (multislot paradigma
   (type STRING)
@@ -10,15 +11,11 @@
         "Estructurado" 
         "Funcional" 
         "Declarativo"
-        "Reflexivo" 
-        "Dirigido por eventos" 
-        "Basada en Prototipos"
-        "Procedural" 
    )
   )
  (slot area-aplicacion
   (type SYMBOL)
-  (allowed-symbols web escritorio SSOO juegos moviles IA)
+  (allowed-symbols web escritorio juegos moviles IA)
  )
  (multislot uso-BD
   (type SYMBOL)
@@ -28,24 +25,26 @@
         PostgreSQL 
         MongoDB 
         SQLServer 
-        Firebird  
         Ninguno
   )
   (default Ninguno)
  )
  (slot calidad-interfaz
   (type SYMBOL)
-  (allowed-symbols      media 
-                        baja 
-                        alta 
-                        ninguna)
+  (allowed-symbols media baja alta ninguna)
   (default ninguna)
  )
 )
-
+; Template de Capacidad de Equipo
+; Representa de acuerdo a la cantidad de miembros y su experiencia
+; la capacidad del equipo de desarrollo
 (deftemplate cap-equipo
  (slot cantMiembros
   (type SYMBOL)
+  ; A: 11 - 20 desarrolladores
+  ; B: 5 - 10  desarrolladores
+  ; C: 2 - 4   desarrolladores
+  ; D: 1       desarrollador
   (allowed-symbols A B C D)
  )
  (slot exp
@@ -53,12 +52,28 @@
   (allowed-symbols experto alta regular poca) 
  )
 )
+; Template de la respuesta intermedia que aun no ha recibido el filtro
+; del ranking de lenguajes
 
 (deftemplate respuesta
+ (slot nombre)
+ (slot ranking
+  (type NUMBER)
+ )
+)
+; Template de la respuesta final del lenguaje que ya fue filtrado por su
+;ubicación en el ranking
+(deftemplate r-final
  (slot nombre)
 )
 
 ;*************REGLAS PARA CAPACIDAD DE EQUIPO***************
+
+; cat-API => Categoria de API del lenguaje
+; A: Muy buena, api en español, tutoriales, ejemplos
+; B: Buena, api en ingles, algunos ejemplos
+; C: Regular, api en ingles, pocos ejemplos, no hay muchos tutoriales
+; D: Mala, api en ingles, sin ejemplos y casi ningún tutorial
 
 (defrule Regla1-CapEquipo
  (cap-equipo (cantMiembros A) (exp experto))
@@ -236,211 +251,290 @@
 
 ;***************REGLAS PARA LENGUAJE DE PROGRAMACION***************
 
-(defrule Regla1-Lenguaje
+(defrule Regla-Java
   (curva-aprendizaje media) 
   (cat-API B)
-  (lenguajes 
-   (plataforma Windows|Linux|Mac|Solaris) 
-   (paradigma "Orientado a Objetos") 
-   (area-aplicacion web|escritorio) 
-   (uso-BD MySQL|Oracle|PostgreSQL|MongoDB|Ninguno) 
-   (calidad-interfaz alta)
+  (or 
+      (lenguajes 
+	   (plataforma Android) 
+	   (paradigma "Orientado a Objetos") 
+	   (area-aplicacion moviles) 
+	   (uso-BD MongoDB|Ninguno) 
+	   (calidad-interfaz ?)
+	  )
+	  
+	  (lenguajes 
+	   (plataforma Windows|Linux) 
+	   (paradigma "Orientado a Objetos") 
+	   (area-aplicacion web|escritorio) 
+	   (uso-BD MySQL|Oracle|PostgreSQL|MongoDB|Ninguno) 
+	   (calidad-interfaz ?)
+	  )
+	  
+	  (lenguajes 
+	   (plataforma macOS) 
+	   (paradigma "Orientado a Objetos") 
+	   (area-aplicacion web|escritorio) 
+	   (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno) 
+	   (calidad-interfaz ?)
+	  )
   )
 =>
- (assert (nombre "Java"))
-)
-
-(defrule Regla2-Lenguaje
- (curva-aprendizaje alta) 
- (cat-API D)
- (lenguajes
-        (paradigma "Declarativo") 
-        (area-aplicacion SSOO) 
-  )
-=>
-  (assert (respuesta (nombre "Assembly Language")))
+ (assert (respuesta (nombre "Java") (ranking 1)))
 )
 
 
-(defrule Regla3-Lenguaje
-  (curva-aprendizaje baja) 
+(defrule Regla-C
+  (curva-aprendizaje media) 
   (cat-API C)
   (lenguajes 
         (plataforma Windows|Linux) 
         (paradigma "Estructurado") 
-        (area-aplicacion SSOO|escritorio) 
-        (uso-BD MySQL|PostgreSQL|MongoDB) 
+        (area-aplicacion escritorio) 
+        (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno) 
         (calidad-interfaz baja)
   )
 =>
-  (assert (respuesta (nombre "C")))
+  (assert (respuesta (nombre "C") (ranking 2)))
 )
 
-(defrule Regla4-Lenguaje
-  (curva-aprendizaje alta) 
-  (cat-API A)
-  (lenguajes 
-        (plataforma Windows|Linux|Android|Unix|iOS|Mac) 
-        (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional"|"Reflexivo"|"Dirigido por eventos") 
+(defrule Regla-CSharp
+  (curva-aprendizaje media) 
+  (cat-API C)
+  (or (lenguajes 
+        (plataforma macOS) 
+        (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional") 
+        (area-aplicacion escritorio|web) 
+        (uso-BD MySQL|SQLServer|MongoDB|Ninguno) 
+        (calidad-interfaz ?)
+  	  )
+  	  (lenguajes 
+        (plataforma Android|iOS) 
+        (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional") 
         (area-aplicacion moviles|escritorio|web) 
-        (uso-BD MySQL|SQLServer|MongoDB|Oracle) 
-        (calidad-interfaz alta)
+        (uso-BD MongoDB|Ninguno) 
+        (calidad-interfaz ?)
+  	  )
+  	  (lenguajes 
+        (plataforma Windows|Linux) 
+        (paradigma "Estructurado"|"Orientado a Objetos"|"Funcional") 
+        (area-aplicacion escritorio|web) 
+        (uso-BD MySQL|SQLServer|MongoDB|Oracle|Ninguno) 
+        (calidad-interfaz ?)
+  	  )
   )
 =>
-  (assert (respuesta (nombre "C#")))
+  (assert (respuesta (nombre "C#") (ranking 4)))
 )
 
 
-(defrule Regla5-Lenguaje
-   (curva-aprendizaje baja) 
-   (cat-API C)
+(defrule Regla-CPlusPlus
+   (curva-aprendizaje media) 
+   (cat-API A)
    (lenguajes 
         (plataforma Windows|Linux) 
         (paradigma "Estructurado"|"Orientado a Objetos") 
         (area-aplicacion juegos|escritorio) 
-        (uso-BD MySQL|PostgreSQL|MongoDB) 
-        (calidad-interfaz media)
+        (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno) 
+        (calidad-interfaz media|baja)
    )
 =>
-  (assert (respuesta (nombre "C++")))
+  (assert (respuesta (nombre "C++") (ranking 3)))
 )
 
-(defrule Regla6-Lenguaje
+(defrule Regla-HTML-CSS-JS
   (curva-aprendizaje alta) 
-  (cat-API B)
+  (cat-API A)
   (lenguajes 
-        (plataforma Windows|Linux|Mac|Unix) 
-        (paradigma "Basada en Prototipos"|"Funcional") 
-        (area-aplicacion web) 
-        (uso-BD MySQL|MongoDB) 
-        (calidad-interfaz ninguna)
+        (plataforma Windows|Linux|macOS) 
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion juegos|web) 
+        (uso-BD MySQL|MongoDB|Ninguno) 
+        (calidad-interfaz ?)
   )
 =>
-  (assert (respuesta (nombre "JavaScript")))
+  (assert (respuesta (nombre "HTML, CSS, JavaScript") (ranking 9)))
 )
 
-(defrule Regla7-Lenguaje
-  (curva-aprendizaje baja) 
+(defrule Regla-Lisp
+  (curva-aprendizaje media) 
   (cat-API D)
   (lenguajes 
-        (plataforma Ubuntu|Windows) 
+        (plataforma Linux|Windows) 
         (paradigma "Orientado a Objetos"|"Funcional"|"Declarativo") 
         (area-aplicacion IA|juegos) 
-        (uso-BD MongoDB) 
+        (uso-BD MongoDB|Ninguno) 
         (calidad-interfaz ninguna)
   )
 =>
-  (assert (respuesta (nombre "Lips")))
+  (assert (respuesta (nombre "Lips") (ranking 13)))
 )
 
-(defrule  Regla8-Lenguaje
+(defrule Regla-Perl
   (curva-aprendizaje baja) 
   (cat-API C)
-  (lenguajes 
-        (plataforma Linux|Windows|OSx) 
-        (paradigma "Funcional"|"Orientado a Objetos"|"Reflexivo"|"Procedural"|"Dirigido por eventos") 
+  (or 
+   (lenguajes 
+        (plataforma Linux|Windows) 
+        (paradigma "Funcional"|"Orientado a Objetos") 
         (area-aplicacion web) 
-        (uso-BD Oracle|MySQL|PostgreSQL|MongoDB)
-        (calidad-interfaz alta)
+        (uso-BD Oracle|MySQL|PostgreSQL|MongoDB|Ninguno)
+        (calidad-interfaz ?)
+   )
+   (lenguajes 
+        (plataforma macOS) 
+        (paradigma "Funcional"|"Orientado a Objetos") 
+        (area-aplicacion web) 
+        (uso-BD MySQL|PostgreSQL|MongoDB|Ninguno)
+        (calidad-interfaz ?)
+   )
+   
   )
 =>
-  (assert (respuesta (nombre "Perl")))
+  (assert (respuesta (nombre "Perl") (ranking 10)))
 )
 
 
-(defrule  Regla9-Lenguaje
-  (curva-aprendizaje baja) 
+(defrule Regla-PHP
+  (curva-aprendizaje media) 
   (cat-API A)
-  (lenguajes 
-        (plataforma Windows|Unix-Like) 
-        (paradigma "Orientado a Objetos"|"Funcional"|"Procedural"|"Reflexivo") 
+  (or 
+  	(lenguajes 
+        (plataforma Windows|Linux) 
+        (paradigma "Orientado a Objetos"|"Funcional") 
         (area-aplicacion web) 
-        (uso-BD MySQL|SQLServer|Oracle|PostgreSQL|Firebird) 
-        (calidad-interfaz ninguna)
+        (uso-BD MySQL|SQLServer|Oracle|PostgreSQL|Ninguno) 
+        (calidad-interfaz ?)
+  	)
+  	(lenguajes 
+        (plataforma macOS) 
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion web) 
+        (uso-BD MySQL|PostgreSQL|Ninguno) 
+        (calidad-interfaz ?)
+  	)
   )
 =>
-  (assert (respuesta (nombre "PHP")))
+  (assert (respuesta (nombre "PHP") (ranking 7)))
 )
 
 
-(defrule  Regla10-Lenguaje
+(defrule Regla-Prolog
   (curva-aprendizaje baja) 
   (cat-API B)
   (lenguajes 
-        (plataforma Linux|Windows|OSx)  ;falta agregar el OSx
+        (plataforma Linux|Windows|macOS)
         (paradigma "Declarativo") 
         (area-aplicacion IA) 
-        (uso-BD MySQL)
-        (calidad-interfaz media)
+        (uso-BD MySQL|Ninguno)
+        (calidad-interfaz media|baja)
   )
 =>
-  (assert (respuesta (nombre "Prolog")))
+  (assert (respuesta (nombre "Prolog") (ranking 14)))
 )
 
 
-(defrule  Regla11-Lenguaje
+(defrule Regla-Python
+  (curva-aprendizaje baja) 
+  (cat-API A)
+  (or 
+  	(lenguajes 
+        (plataforma Windows|Linux) 
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion escritorio|web|juegos|IA) 
+        (uso-BD MySQL|MongoDB|PostgreSQL|Ninguno) 
+        (calidad-interfaz ?)
+  	)
+  	(lenguajes 
+        (plataforma macOS) 
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion escritorio|web|juegos|IA) 
+        (uso-BD MySQL|MongoDB|PostgreSQL|Ninguno) 
+        (calidad-interfaz ?)
+  	)
+  )
+=>
+  (assert (respuesta (nombre "Python") (ranking 5)))
+)
+
+(defrule Regla-Ruby
   (curva-aprendizaje baja) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows|Linux|Mac) 
+        (plataforma Linux|macOS|Windows) 
         (paradigma "Orientado a Objetos"|"Funcional") 
-        (area-aplicacion escritorio|web) 
-        (uso-BD MySQL|MongoDB|Oracle|PostgreSQL) 
-        (calidad-interfaz alta)
-  )
-=>
-  (assert (respuesta (nombre "Python")))
-)
-
-(defrule  Regla12-Lenguaje
-  (curva-aprendizaje alta) 
-  (cat-API A)
-  (lenguajes 
-        (plataforma Linux|Unix|OSx|Windows) 
-        (paradigma "Orientado a Objetos"|"Reflexivo") 
         (area-aplicacion web) 
-        (uso-BD  MySQL|PostgreSQL|MongoDB)
-        (calidad-interfaz alta)
+        (uso-BD  MySQL|PostgreSQL|MongoDB|Ninguno)
+        (calidad-interfaz ?)
   )
 =>
-  (assert (respuesta (nombre "Ruby")))
+  (assert (respuesta (nombre "Ruby") (ranking 11)))
 )
 
-
-
-(defrule Regla13-Lenguaje
+(defrule Regla-Scala
   (curva-aprendizaje alta) 
   (cat-API A)
   (lenguajes 
-        (plataforma Mac|Unix|Windows|OSx)  
+        (plataforma Linux|Windows|macOS)  
         (paradigma "Funcional"|"Orientado a Objetos") 
         (area-aplicacion web) 
-        (uso-BD MySQL MongoDB)
-        (calidad-interfaz alta)
+        (uso-BD MySQL|MongoDB|Ninguno)
+        (calidad-interfaz ?)
   )
 =>
-  (assert (respuesta (nombre "Scala")))
+  (assert (respuesta (nombre "Scala") (ranking 12)))
 )
 
 
 
-(defrule  Regla14-Lenguaje
+(defrule  Regla-VBNet
+  (curva-aprendizaje alta) 
+  (cat-API A)
+  (lenguajes 
+        (plataforma Windows)
+        (paradigma "Orientado a Objetos") 
+        (area-aplicacion web|escritorio) 
+        (uso-BD SQLServer|Oracle|Ninguno) 
+        (calidad-interfaz ?)
+  )
+=>
+  (assert (respuesta (nombre "Visual Basic.Net") (ranking 8)))
+)
+
+(defrule Regla-Swift
   (curva-aprendizaje baja) 
   (cat-API A)
   (lenguajes 
-        (plataforma Windows) 
-        (paradigma "Orientado a Objetos") 
-        (area-aplicacion web|escritorio) 
-        (uso-BD MySQL|MongoDB) 
-        (calidad-interfaz alta)
+        (plataforma iOS|macOS|Linux)
+        (paradigma "Orientado a Objetos"|"Funcional") 
+        (area-aplicacion moviles) 
+        (uso-BD MySQL|MongoDB|Ninguno) 
+        (calidad-interfaz ?)
   )
 =>
-  (assert (respuesta (nombre "Visual Basic.Net")))
+  (assert (respuesta (nombre "Swift") (ranking 6)))
 )
 
+(deffunction comp-ranking (?fact1 ?fact2)
+   (< (fact-slot-value ?fact1 ranking) (fact-slot-value ?fact2 ranking)))
 
-(deffacts prueba1
- (cap-equipo (cantMiembros B) (exp alta))
- (lenguajes (plataforma Linux) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD Oracle) (calidad-interfaz alta))
+(deffunction find-max (?template ?predicate)
+   (bind ?max FALSE)
+   (do-for-all-facts ((?f ?template)) TRUE
+      (if (or (not ?max) (funcall ?predicate ?f ?max))
+         then
+         (bind ?max ?f)))
+   (return ?max))
+
+(defrule find-max
+   =>
+   (bind ?respuesta (find-max respuesta comp-ranking))
+   (if ?respuesta
+      then
+      (assert (r-final (nombre (fact-slot-value ?respuesta nombre)))))
 )
 
+;(deffacts prueba1
+; (cap-equipo (cantMiembros A) (exp experto))
+; (lenguajes (plataforma Windows) (paradigma "Orientado a Objetos") (area-aplicacion web) (uso-BD MongoDB) (calidad-interfaz alta))
+;)
