@@ -36,6 +36,8 @@ public class Procesamiento {
 		
 		List<String> lenguajes = new ArrayList<>();
 		
+		
+		
 		// Transformación del objeto cuestionario a un ASSERT de CLIPS
 		String assert1 = "(assert "
 				+ "(cap-equipo (cantMiembros "+ cuestionario.getDesarrolladores() +") "
@@ -50,6 +52,8 @@ public class Procesamiento {
 		
 		// Cargamos el script de CLIPS
 		CLIPSENV.load("lenguajes.CLP");
+		
+		CLIPSENV.eval("(set-strategy lex)");
 		
 		// Evaluamos el la expresión
 		CLIPSENV.eval(assert1);

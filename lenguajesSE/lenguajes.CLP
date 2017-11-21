@@ -238,7 +238,7 @@
 
 (defrule Regla1-Lenguaje
   (curva-aprendizaje media) 
-  (cat-API B)
+  (cat-API A)
   (lenguajes 
    (plataforma Android|Windows|Linux|macOS|Solaris) 
    (paradigma "Orientado a Objetos") 
@@ -253,7 +253,7 @@
 
 (defrule Regla2-Lenguaje
   (curva-aprendizaje baja) 
-  (cat-API C)
+  (cat-API A)
   (lenguajes 
         (plataforma Windows|Linux) 
         (paradigma "Estructurado") 
@@ -282,7 +282,7 @@
 
 (defrule Regla4-Lenguaje
    (curva-aprendizaje baja) 
-   (cat-API C)
+   (cat-API A)
    (lenguajes 
         (plataforma Windows|Linux) 
         (paradigma "Estructurado"|"Orientado a Objetos") 
@@ -296,7 +296,7 @@
 
 (defrule Regla5-Lenguaje
   (curva-aprendizaje alta) 
-  (cat-API B)
+  (cat-API A)
   (lenguajes 
         (plataforma Windows|Linux|macOS|Unix) 
         (paradigma "Basada en Prototipos"|"Funcional") 
@@ -310,7 +310,7 @@
 
 (defrule Regla6-Lenguaje
   (curva-aprendizaje baja) 
-  (cat-API D)
+  (cat-API B)
   (lenguajes 
         (plataforma Linux|Windows) 
         (paradigma "Orientado a Objetos"|"Funcional"|"Declarativo") 
@@ -324,7 +324,7 @@
 
 (defrule  Regla7-Lenguaje
   (curva-aprendizaje baja) 
-  (cat-API C)
+  (cat-API B)
   (lenguajes 
         (plataforma Linux|Windows|macOS) 
         (paradigma "Funcional"|"Orientado a Objetos"|"Reflexivo"|"Procedural"|"Dirigido por eventos") 
