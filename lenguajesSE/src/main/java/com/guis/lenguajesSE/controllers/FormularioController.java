@@ -30,7 +30,7 @@ public class FormularioController {
 	@GetMapping("")
 	public String showFormulario(Model model) {
 		
-		LOG.info("Mostrando el formulario de respuestas");
+		LOG.info("Mostrando el formulario de preguntas");
 		
 		model.addAttribute("cuestionario", new Cuestionario());
 		
