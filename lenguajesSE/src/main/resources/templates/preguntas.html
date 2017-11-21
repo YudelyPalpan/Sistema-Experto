@@ -11,6 +11,7 @@
 
   <script type="text/javascript">
 	$(document).ready(function() {
+	    
 		$(".btnMoviles").click(function(){
 			$(".radioSOEsc").hide();
 			$(".radioSOMov").show();
@@ -59,8 +60,6 @@
 		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Windows"/> Windows <br></br></div>
 		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Linux"/> Linux <br></br></div>
 		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="macOS"/> macOS <br></br></div>
-		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Solaris"/> Solaris <br></br></div>
-		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Unix"/> Unix <br></br></div>
 		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="iOS"/> iOS <br></br></div>
 		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Android"/> Android <br></br></div>
 	</div>
@@ -75,10 +74,6 @@
 		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Orientado a Objetos"/> Orientado a Objetos <br></br>
 		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Estructurado"/> Estructurado <br></br>
 		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Funcional"/> Funcional <br></br>
-		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Reflexivo"/> Reflexivo<br></br>
-		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Dirigido por eventos"/> Dirigido por eventos <br></br>
-		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Basada en Prototipos"/> Basada en Prototipos <br></br>
-		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Procedural"/> Procedural <br></br>
 		<input type="radio" name="paradigma" th:field="*{paradigma}" required value="Declarativo"/> Declarativo <br></br>
 	</div>
 	<input type="button" name="previous" class="previous action-button" value="Anterior" />
@@ -92,7 +87,6 @@
 		<input type="radio" name="bd" th:field="*{bd}" required value="SQLServer"/> SQL Server <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="MySQL"/> MySQL <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="MongoDB"/> MongoDB <br></br>
-		<input type="radio" name="bd" th:field="*{bd}" required value="Firebird"/> Firebird <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="PostgreSQL"/> PostgreSQL  <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="Ninguno"/> Ninguno <br></br>
 	</div>
@@ -101,7 +95,7 @@
   </fieldset>
 
   <fieldset class="fs">
-	<h2 class="fs-title">Nivel de Interfaz Gráfica</h2>
+	<h2 class="fs-title">Calidad de Interfaz Gráfica</h2>
 
 	<div class="radio">
 	  <input type="radio" name="interfaz" th:field="*{interfaz}" required value="alta"/> Alta <br></br>

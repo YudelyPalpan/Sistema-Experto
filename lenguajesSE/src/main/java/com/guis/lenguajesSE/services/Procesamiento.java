@@ -62,7 +62,7 @@ public class Procesamiento {
 		CLIPSENV.run();
 		
 		// Recogemos los hechos que coincidan con el template respuesta
-		MultifieldValue value = (MultifieldValue) CLIPSENV.eval("(find-all-facts ((?r respuesta)) TRUE)");
+		MultifieldValue value = (MultifieldValue) CLIPSENV.eval("(find-all-facts ((?r r-final)) TRUE)");
 		
 		try {
 			// Iteramos la respuesta
