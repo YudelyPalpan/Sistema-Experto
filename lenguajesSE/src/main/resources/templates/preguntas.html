@@ -12,6 +12,18 @@
   <script type="text/javascript">
 	$(document).ready(function() {
 	    
+	    if($(".btnMoviles").prop("checked")) {
+	    	console.log("True");
+	    	$(".radioSOEsc").hide();
+			$(".radioSOMov").show();
+	    
+	    } else if ($(".btnNotMovi").prop('checked')) {
+	    	console.log("True");
+	    	$(".radioSOEsc").show();
+			$(".radioSOMov").hide();
+	    
+	    }
+
 		$(".btnMoviles").click(function(){
 			$(".radioSOEsc").hide();
 			$(".radioSOMov").show();
@@ -20,6 +32,14 @@
 		$(".btnNotMovi").click(function(){
 			$(".radioSOEsc").show();
 			$(".radioSOMov").hide();
+		});
+
+		$(".btnMacOS").click(function(){
+			$(".bdEx").hide();
+		});
+		
+		$(".btnNoMac").click(function(){
+			$(".bdEx").show();
 		});
 	});
   </script>
@@ -57,11 +77,11 @@
 	<h2 class="fs-title">¿En que plataforma quieres desarrollar tu aplicación?</h2>
 
 	<div class="radio">
-		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Windows"/> Windows <br></br></div>
-		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Linux"/> Linux <br></br></div>
-		<div class="radioSOEsc"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="macOS"/> macOS <br></br></div>
-		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="iOS"/> iOS <br></br></div>
-		<div class="radioSOMov"><input type="radio" name="plataforma" th:field="*{plataforma}" required value="Android"/> Android <br></br></div>
+		<div class="radioSOEsc"><input class="btnNoMac" type="radio" name="plataforma" th:field="*{plataforma}" required value="Windows"/> Windows <br></br></div>
+		<div class="radioSOEsc"><input class="btnNoMac" type="radio" name="plataforma" th:field="*{plataforma}" required value="Linux"/> Linux <br></br></div>
+		<div class="radioSOEsc"><input class="btnMacOS" type="radio" name="plataforma" th:field="*{plataforma}" required value="macOS"/> macOS <br></br></div>
+		<div class="radioSOMov"><input class="btnMacOS" type="radio" name="plataforma" th:field="*{plataforma}" required value="iOS"/> iOS <br></br></div>
+		<div class="radioSOMov"><input class="btnNoMac" type="radio" name="plataforma" th:field="*{plataforma}" required value="Android"/> Android <br></br></div>
 	</div>
 	<input type="button" name="previous" class="previous action-button" value="Anterior" />
 	<input type="button" name="next" class="next action-button" value="Siguiente" />
@@ -83,8 +103,8 @@
 	<h2 class="fs-title">¿Que Base de Datos usará?</h2>
 
 	<div class="radio">
-	  <input type="radio" name="bd" th:field="*{bd}" required value="Oracle"/> Oracle <br></br>
-		<input type="radio" name="bd" th:field="*{bd}" required value="SQLServer"/> SQL Server <br></br>
+		<div class="bdEx"><input type="radio" name="bd" th:field="*{bd}" required value="Oracle"/> Oracle <br></br></div>
+		<div class="bdEx"><input type="radio" name="bd" th:field="*{bd}" required value="SQLServer"/> SQL Server <br></br></div>
 		<input type="radio" name="bd" th:field="*{bd}" required value="MySQL"/> MySQL <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="MongoDB"/> MongoDB <br></br>
 		<input type="radio" name="bd" th:field="*{bd}" required value="PostgreSQL"/> PostgreSQL  <br></br>
@@ -128,7 +148,7 @@
 		<input type="radio" name="exp" th:field="*{exp}" required value="poca"/> Poca <br></br>
 	</div>
 	<input type="button" name="previous" class="previous action-button" value="Anterior" />
-	<input type="submit" name="submit" class="submit action-button" value="Submit" />
+	<input type="submit" name="submit" class="submit action-button" value="Consultar" />
   </fieldset>
 </form>
 </body>
